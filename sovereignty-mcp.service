@@ -1,0 +1,20 @@
+[Unit]
+Description=Tasklet Sovereignty MCP Server
+After=network.target
+
+[Service]
+Type=simple
+User=lorenzom
+WorkingDirectory=/home/lorenzom/sovereignty-mcp
+ExecStartPre=/bin/bash -c 'source /home/lorenzom/.quantum/secrets.env'
+ExecStart=/bin/bash -c 'source /home/lorenzom/.quantum/secrets.env && /home/lorenzom/sovereignty-mcp/venv/bin/python -m sovereignty'
+Restart=always
+RestartSec=5
+StandardInput=null
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=sovereignty-mcp
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target
