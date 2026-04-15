@@ -1,0 +1,452 @@
+source_pack:
+  id: universal_ai_source_pack
+  name: Universal AI Source Pack
+  version: 1.0.0
+  description: Unified source registry for public, zero-login AI and MCP knowledge
+    bases. Optimized for source tabs, crawlers, RAG seed registries, and agent-accessible
+    documentation routing.
+  default_ingestion_order:
+  - llms-full.txt
+  - llms.txt
+  - markdown
+  - openapi/json/yaml/schema
+  - structured_html
+  dedupe_policy:
+    prefer:
+    - markdown
+    - openapi/json/yaml
+    - llms-full derived content
+    - clean html
+    - raw html
+    by:
+    - source_id
+    - canonical_url
+    - ingestion_url
+    - content_hash
+  namespace_priority:
+  - standards/mcp
+  - providers/openai
+  - providers/anthropic
+  - agents/langchain
+  - agents/pydantic_ai
+  - rag/llamaindex
+  - rag/qdrant
+  - rag/weaviate
+  - observability/langfuse
+  - serving/vllm
+  - frameworks/fastmcp
+  - platforms/openai/apps_sdk
+  - community/mcp
+sources:
+- id: langchain_docs
+  name: LangChain / LangGraph / LangSmith docs
+  category: agent_orchestration
+  primary_url: https://docs.langchain.com
+  ingestion_urls:
+  - https://docs.langchain.com/llms.txt
+  - https://docs.langchain.com/mcp
+  description: 'Comprehensive documentation for LangChain and its related projects
+
+    (LangGraph and LangSmith).  It covers agent orchestration,
+
+    memory, runtime, observability and deployment.  The docs publish an
+
+    `llms.txt` index and a docs MCP server for live retrieval, enabling
+
+    efficient ingestion of the content.
+
+    '
+  trust_tier: A
+  namespace: agents/langchain
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: pydantic_ai_docs
+  name: Pydantic AI docs
+  category: agent_framework
+  primary_url: https://pydantic.dev/docs/ai
+  ingestion_urls:
+  - https://pydantic.dev/docs/ai/llms-full.txt
+  - https://pydantic.dev/docs/ai/overview/
+  - https://pydantic.dev/docs/ai/mcp/overview/
+  description: 'Documentation for Pydantic AI, a framework that brings strict type
+
+    models and validation to agent workflows.  It includes detailed
+
+    guidance on models, schemas, agents and MCP integration.  A
+
+    `llms-full.txt` index enumerates the pages, and the docs emphasize
+
+    structured outputs and evaluation.
+
+    '
+  trust_tier: A
+  namespace: agents/pydantic_ai
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: fastmcp_docs
+  name: FastMCP documentation
+  category: framework_docs
+  trust_tier: A
+  primary_url: https://gofastmcp.com/getting-started/welcome
+  ingestion_urls:
+  - https://gofastmcp.com/llms.txt
+  - https://gofastmcp.com/llms-full.txt
+  - https://gofastmcp.com/getting-started/welcome
+  - https://gofastmcp.com/getting-started/welcome.md
+  description: 'Primary framework docs for FastMCP, with llms indexes and markdown
+    page
+
+    access. Best practical framework source for building MCP tools,
+
+    resources, prompts, and clients.
+
+    '
+  namespace: frameworks/fastmcp
+  enabled: true
+  priority: 100
+  source_kind: llms_txt
+- id: fastmcp_tools_resources
+  name: FastMCP tools and resources docs
+  category: framework_reference
+  trust_tier: A
+  primary_url: https://gofastmcp.com/servers/tools
+  ingestion_urls:
+  - https://gofastmcp.com/servers/tools
+  - https://gofastmcp.com/v2/servers/resources
+  - https://gofastmcp.com/servers/context
+  description: 'Focused FastMCP references for tools, resources, and context-handling.
+
+    Useful for precise server capability implementation.
+
+    '
+  namespace: frameworks/fastmcp
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: langfuse_docs
+  name: Langfuse docs
+  category: observability_evals
+  primary_url: https://langfuse.com/docs
+  ingestion_urls:
+  - https://langfuse.com/llms.txt
+  - https://langfuse.com/api/mcp
+  - https://langfuse.com/docs
+  description: 'Documentation for Langfuse, a platform for observability, tracing
+    and
+
+    evaluation of LLM applications.  The docs feature an `llms.txt`
+
+    manifest and expose a docs MCP endpoint.  They cover topics such as
+
+    tracing, cost tracking, dataset management and self‑hosting.
+
+    '
+  trust_tier: A
+  namespace: observability/langfuse
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: openai_apps_sdk_mcp
+  name: OpenAI Apps SDK MCP concepts
+  category: host_integration
+  trust_tier: A
+  primary_url: https://developers.openai.com/apps-sdk/concepts/mcp-server
+  ingestion_urls:
+  - https://developers.openai.com/apps-sdk/concepts/mcp-server
+  - https://developers.openai.com/apps-sdk/quickstart
+  - https://developers.openai.com/apps-sdk/mcp-apps-in-chatgpt
+  - https://developers.openai.com/apps-sdk/reference
+  - https://developers.openai.com/apps-sdk/build/mcp-server
+  description: 'Official OpenAI guidance for MCP-backed ChatGPT apps, including MCP
+    server
+
+    concepts, app compatibility, and build patterns.
+
+    '
+  namespace: platforms/openai/apps_sdk
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: openai_api_docs
+  name: OpenAI API docs
+  category: provider_api
+  primary_url: https://developers.openai.com/api/docs
+  ingestion_urls:
+  - https://developers.openai.com/api/docs/llms.txt
+  - https://developers.openai.com/api/docs/llms-full.txt
+  description: 'Official developer documentation for the OpenAI API.  These docs cover
+
+    model invocation, tool and function calling, files, assistants and
+
+    workflows.  The OpenAI team publishes machine‑readable index files
+
+    (`llms.txt` and `llms-full.txt`) that list every page and link to
+
+    corresponding Markdown representations, making the content easy to crawl
+
+    and ingest.
+
+    '
+  trust_tier: A
+  namespace: providers/openai
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: llamaindex_docs
+  name: LlamaIndex docs
+  category: rag_framework
+  primary_url: https://developers.llamaindex.ai
+  ingestion_urls:
+  - https://developers.llamaindex.ai/llms.txt
+  - https://developers.llamaindex.ai/api/list?section=&path=&depth=2
+  - https://developers.llamaindex.ai/api/search?q=&limit=10&full-content=true
+  - https://developers.llamaindex.ai/api/read?path=/python/framework/&startLine=0&endLine=500
+  description: 'Official documentation for LlamaIndex (formerly GPT Index).  The
+
+    platform provides a versatile toolkit for building retrieval‑augmented
+
+    generation workflows.  Besides a standard `llms.txt` index, the docs
+
+    feature their own JSON APIs for listing, searching and reading pages,
+
+    allowing programmatic ingestion without scraping.
+
+    '
+  trust_tier: A
+  namespace: rag/llamaindex
+  source_kind: mixed_programmatic
+  enabled: true
+  priority: 100
+- id: qdrant_docs
+  name: Qdrant docs
+  category: vector_database
+  primary_url: https://qdrant.tech/documentation
+  ingestion_urls:
+  - https://qdrant.tech/llms.txt
+  - https://qdrant.tech/llms-full.txt
+  - https://qdrant.tech/documentation/
+  description: 'Documentation for the Qdrant vector database, which powers efficient
+
+    vector search and retrieval‑augmented generation.  It provides
+
+    detailed guides, API references and examples for embedding, filtering
+
+    and deploying Qdrant.  Machine‑friendly index files (`llms.txt` and
+
+    `llms-full.txt`) make the docs suitable for automated ingestion.
+
+    '
+  trust_tier: A
+  namespace: rag/qdrant
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: weaviate_docs
+  name: Weaviate docs
+  category: vector_database
+  primary_url: https://docs.weaviate.io/weaviate
+  ingestion_urls:
+  - https://weaviate.io/llms.txt
+  - https://docs.weaviate.io/weaviate
+  description: 'Official documentation for Weaviate, an open‑source vector database
+
+    with built‑in generative and RAG capabilities.  The docs include an
+
+    `llms.txt` file with curated entries for AI ingestion and clear
+
+    guidance on schema design, ingestion, search and deployment.
+
+    '
+  trust_tier: A
+  namespace: rag/weaviate
+  source_kind: llms_txt
+  enabled: true
+  priority: 100
+- id: mcp_architecture
+  name: MCP architecture overview
+  category: standard_spec
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/docs/learn/architecture
+  ingestion_urls:
+  - https://modelcontextprotocol.io/docs/learn/architecture
+  - https://modelcontextprotocol.io/llms-full.txt
+  description: 'Core host-client-server architecture, design model, and protocol mental
+
+    model for MCP systems.
+
+    '
+  namespace: standards/mcp
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: mcp_official_docs
+  name: Model Context Protocol official docs
+  category: standard_spec
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/docs
+  ingestion_urls:
+  - https://modelcontextprotocol.io/llms.txt
+  - https://modelcontextprotocol.io/llms-full.txt
+  - https://modelcontextprotocol.io/docs/learn/architecture
+  - https://modelcontextprotocol.io/docs/sdk
+  description: 'Canonical MCP documentation hub. Best root source for protocol concepts,
+
+    architecture, official SDKs, and discoverable docs ingestion.
+
+    '
+  namespace: standards/mcp
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: mcp_build_client
+  name: Build an MCP client
+  category: client_development
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/docs/develop/build-client
+  ingestion_urls:
+  - https://modelcontextprotocol.io/docs/develop/build-client
+  - https://modelcontextprotocol.io/llms-full.txt
+  description: 'Official tutorial for building an MCP client that connects to MCP
+
+    servers. Strong source for client lifecycle and tool invocation patterns.
+
+    '
+  namespace: standards/mcp/development
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: mcp_build_server
+  name: Build an MCP server
+  category: server_development
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/docs/develop/build-server
+  ingestion_urls:
+  - https://modelcontextprotocol.io/docs/develop/build-server
+  - https://modelcontextprotocol.io/llms-full.txt
+  description: 'Official hands-on guide for building an MCP server, including core
+    server
+
+    concepts and implementation flow.
+
+    '
+  namespace: standards/mcp/development
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: mcp_registry_about
+  name: MCP Registry overview
+  category: registry_discovery
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/registry/about
+  ingestion_urls:
+  - https://modelcontextprotocol.io/registry/about
+  - https://registry.modelcontextprotocol.io/
+  description: 'Official overview of the MCP Registry, including discoverability,
+
+    metadata, and server publication model.
+
+    '
+  namespace: standards/mcp/registry
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: mcp_registry_publish
+  name: Publish an MCP server to the MCP Registry
+  category: registry_publishing
+  trust_tier: A
+  primary_url: https://modelcontextprotocol.io/registry/quickstart
+  ingestion_urls:
+  - https://modelcontextprotocol.io/registry/quickstart
+  - https://modelcontextprotocol.io/registry/package-types
+  - https://modelcontextprotocol.io/registry/authentication
+  description: 'Official quickstart for publishing MCP servers, including mcp-publisher,
+
+    namespace authentication, package verification, and registry metadata.
+
+    '
+  namespace: standards/mcp/registry
+  enabled: true
+  priority: 100
+  source_kind: html_docs
+- id: claude_api_docs
+  name: Claude API docs
+  category: provider_api
+  primary_url: https://platform.claude.com/docs/en/home
+  ingestion_urls:
+  - https://platform.claude.com/docs/en/home
+  - https://platform.claude.com/docs/en/resources/overview
+  description: 'Official public documentation for Anthropic’s Claude API.  The site
+
+    covers endpoint usage, tool integration, agentic prompting and
+
+    managed‑agent surfaces.  While not all resources expose `llms.txt`,
+
+    the docs are freely accessible and structured, and they advertise a
+
+    resource area specifically for AI ingestion.
+
+    '
+  trust_tier: B
+  namespace: providers/anthropic
+  source_kind: html_docs
+  enabled: true
+  priority: 80
+- id: vllm_docs
+  name: vLLM docs
+  category: inference_serving
+  primary_url: https://docs.vllm.ai/en/stable/
+  ingestion_urls:
+  - https://docs.vllm.ai/en/stable/
+  - https://docs.vllm.ai/en/stable/serving/openai_compatible_server/
+  - https://docs.vllm.ai/en/stable/api/
+  description: 'Documentation for vLLM, a high‑throughput inference and serving engine
+
+    that implements an OpenAI‑compatible API.  The stable docs include
+
+    deployment guidance, server API descriptions and configuration
+
+    options.  While there is no published `llms.txt`, the docs are
+
+    versioned, well‑structured and publicly accessible.
+
+    '
+  trust_tier: B
+  namespace: serving/vllm
+  source_kind: html_docs
+  enabled: true
+  priority: 80
+- id: composio_mcp_client_guide
+  name: Composio MCP client guide
+  category: community_tutorial
+  trust_tier: C
+  primary_url: https://composio.dev/content/mcp-client-step-by-step-guide-to-building-from-scratch
+  ingestion_urls:
+  - https://composio.dev/content/mcp-client-step-by-step-guide-to-building-from-scratch
+  description: 'Community guide for building an MCP client from scratch, with practical
+
+    examples and integration-oriented thinking.
+
+    '
+  namespace: community/mcp
+  enabled: true
+  priority: 60
+  source_kind: html_docs
+- id: freecodecamp_fastmcp_guide
+  name: freeCodeCamp FastMCP server tutorial
+  category: community_tutorial
+  trust_tier: C
+  primary_url: https://www.freecodecamp.org/news/how-to-build-your-first-mcp-server-using-fastmcp/
+  ingestion_urls:
+  - https://www.freecodecamp.org/news/how-to-build-your-first-mcp-server-using-fastmcp/
+  description: 'Community tutorial for first-time MCP builders using FastMCP. Good
+    for
+
+    onboarding and examples, but not canonical over official docs.
+
+    '
+  namespace: community/mcp
+  enabled: true
+  priority: 60
+  source_kind: html_docs
