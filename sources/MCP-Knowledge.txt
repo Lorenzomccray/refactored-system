@@ -1,0 +1,165 @@
+# MCP Knowledge Sources
+#
+# Universal source registry for MCP-focused AI projects.
+# Public, free, zero-login sources only.
+# Designed for direct ingestion by AI systems with source tabs, crawlers,
+# retrieval pipelines, or knowledge-base registries.
+
+version: 1
+kind: ai_source_registry
+name: mcp_knowledge_sources
+scope: model_context_protocol
+updated_utc: "2026-04-11T00:00:00Z"
+
+defaults:
+  access: public
+  free: true
+  sign_in_required: false
+  ingestion_priority: high
+  preferred_formats:
+    - llms-full.txt
+    - llms.txt
+    - markdown
+    - html
+    - schema
+
+sources:
+  - id: mcp_official_docs
+    name: "Model Context Protocol official docs"
+    category: "standard_spec"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/docs"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/llms.txt"
+      - "https://modelcontextprotocol.io/llms-full.txt"
+      - "https://modelcontextprotocol.io/docs/learn/architecture"
+      - "https://modelcontextprotocol.io/docs/sdk"
+    description: |
+      Canonical MCP documentation hub. Best root source for protocol concepts,
+      architecture, official SDKs, and discoverable docs ingestion.
+
+  - id: mcp_architecture
+    name: "MCP architecture overview"
+    category: "standard_spec"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/docs/learn/architecture"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/docs/learn/architecture"
+      - "https://modelcontextprotocol.io/llms-full.txt"
+    description: |
+      Core host-client-server architecture, design model, and protocol mental
+      model for MCP systems.
+
+  - id: mcp_build_server
+    name: "Build an MCP server"
+    category: "server_development"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/docs/develop/build-server"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/docs/develop/build-server"
+      - "https://modelcontextprotocol.io/llms-full.txt"
+    description: |
+      Official hands-on guide for building an MCP server, including core server
+      concepts and implementation flow.
+
+  - id: mcp_build_client
+    name: "Build an MCP client"
+    category: "client_development"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/docs/develop/build-client"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/docs/develop/build-client"
+      - "https://modelcontextprotocol.io/llms-full.txt"
+    description: |
+      Official tutorial for building an MCP client that connects to MCP
+      servers. Strong source for client lifecycle and tool invocation patterns.
+
+  - id: mcp_registry_about
+    name: "MCP Registry overview"
+    category: "registry_discovery"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/registry/about"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/registry/about"
+      - "https://registry.modelcontextprotocol.io/"
+    description: |
+      Official overview of the MCP Registry, including discoverability,
+      metadata, and server publication model.
+
+  - id: mcp_registry_publish
+    name: "Publish an MCP server to the MCP Registry"
+    category: "registry_publishing"
+    trust_tier: "A"
+    primary_url: "https://modelcontextprotocol.io/registry/quickstart"
+    ingestion_urls:
+      - "https://modelcontextprotocol.io/registry/quickstart"
+      - "https://modelcontextprotocol.io/registry/package-types"
+      - "https://modelcontextprotocol.io/registry/authentication"
+    description: |
+      Official quickstart for publishing MCP servers, including mcp-publisher,
+      namespace authentication, package verification, and registry metadata.
+
+  - id: fastmcp_docs
+    name: "FastMCP documentation"
+    category: "framework_docs"
+    trust_tier: "A"
+    primary_url: "https://gofastmcp.com/getting-started/welcome"
+    ingestion_urls:
+      - "https://gofastmcp.com/llms.txt"
+      - "https://gofastmcp.com/llms-full.txt"
+      - "https://gofastmcp.com/getting-started/welcome"
+      - "https://gofastmcp.com/getting-started/welcome.md"
+    description: |
+      Primary framework docs for FastMCP, with llms indexes and markdown page
+      access. Best practical framework source for building MCP tools,
+      resources, prompts, and clients.
+
+  - id: fastmcp_tools_resources
+    name: "FastMCP tools and resources docs"
+    category: "framework_reference"
+    trust_tier: "A"
+    primary_url: "https://gofastmcp.com/servers/tools"
+    ingestion_urls:
+      - "https://gofastmcp.com/servers/tools"
+      - "https://gofastmcp.com/v2/servers/resources"
+      - "https://gofastmcp.com/servers/context"
+    description: |
+      Focused FastMCP references for tools, resources, and context-handling.
+      Useful for precise server capability implementation.
+
+  - id: openai_apps_sdk_mcp
+    name: "OpenAI Apps SDK MCP concepts"
+    category: "host_integration"
+    trust_tier: "A"
+    primary_url: "https://developers.openai.com/apps-sdk/concepts/mcp-server"
+    ingestion_urls:
+      - "https://developers.openai.com/apps-sdk/concepts/mcp-server"
+      - "https://developers.openai.com/apps-sdk/quickstart"
+      - "https://developers.openai.com/apps-sdk/mcp-apps-in-chatgpt"
+      - "https://developers.openai.com/apps-sdk/reference"
+      - "https://developers.openai.com/apps-sdk/build/mcp-server"
+    description: |
+      Official OpenAI guidance for MCP-backed ChatGPT apps, including MCP server
+      concepts, app compatibility, and build patterns.
+
+  - id: freecodecamp_fastmcp_guide
+    name: "freeCodeCamp FastMCP server tutorial"
+    category: "community_tutorial"
+    trust_tier: "C"
+    primary_url: "https://www.freecodecamp.org/news/how-to-build-your-first-mcp-server-using-fastmcp/"
+    ingestion_urls:
+      - "https://www.freecodecamp.org/news/how-to-build-your-first-mcp-server-using-fastmcp/"
+    description: |
+      Community tutorial for first-time MCP builders using FastMCP. Good for
+      onboarding and examples, but not canonical over official docs.
+
+  - id: composio_mcp_client_guide
+    name: "Composio MCP client guide"
+    category: "community_tutorial"
+    trust_tier: "C"
+    primary_url: "https://composio.dev/content/mcp-client-step-by-step-guide-to-building-from-scratch"
+    ingestion_urls:
+      - "https://composio.dev/content/mcp-client-step-by-step-guide-to-building-from-scratch"
+    description: |
+      Community guide for building an MCP client from scratch, with practical
+      examples and integration-oriented thinking.
