@@ -2,7 +2,7 @@
 
 **Purpose:** To ensure that all knowledge retrieval and reasoning tasks adhere to the project's source‑tier doctrine. Always complete this checklist *before* producing a final response or artifact.
 
-**Reference:** Module 15: Operational Metareasoning and Source Arbitration (docs/reference/MODULE_15_OPERATIONAL_METAREASONING.md)
+**Reference:** Module 15: Operational Metareasoning and Source Arbitration ([docs/reference/MODULE_15_OPERATIONAL_METAREASONING.md](../reference/MODULE_15_OPERATIONAL_METAREASONING.md))
 
 ---
 
