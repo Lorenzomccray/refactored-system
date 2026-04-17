@@ -1,5 +1,7 @@
 # Execution Receipt & Source Attribution Template
 
+**Reference:** Module 15: Operational Metareasoning and Source Arbitration ([docs/reference/MODULE_15_OPERATIONAL_METAREASONING.md](../reference/MODULE_15_OPERATIONAL_METAREASONING.md))
+
 **Instructions:** Copy and paste the block below at the end of every substantive AI assistant output. Replace the bracketed placeholders with the specific details from the task.
 
 ---
