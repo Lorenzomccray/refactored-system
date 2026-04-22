@@ -1,4 +1,5 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Any, Dict, Optional
 
 
 @dataclass(slots=True)
@@ -9,3 +10,4 @@ class ApprovalRequest:
     risk_class: str
     reason: str
     requested_by: str = "system"
+    metadata: Optional[Dict[str, Any]] = field(default=None)
