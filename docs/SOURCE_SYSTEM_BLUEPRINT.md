@@ -1,72 +1,77 @@
-# SOURCE SYSTEM BLUEPRINT
+# SOURCE SYSTEM BLUEPRINT V2
 
 ## Purpose
-This file defines how project sources are organized, prioritized, and maintained so the system stays aligned, modular, and execution-focused.
 
-## Source tiers
-1. Canonical internal architecture docs
-2. Runtime truth docs
-3. Build-slice docs
-4. Reference lessons docs
-5. External public registries
+Extend the source system so the KB layer becomes a first-class operational surface for the assistant.
 
-## Canonical docs
-- MASTER_AI_SYSTEM_V2.md
-- SCHEMA_CONTRACTS.md
-- RISK_TAXONOMY.md
-- MEMORY_WRITE_POLICY.md
-- EXECUTION_RECEIPTS.md
-- TOOL_CONTRACTS.md
-- PROVIDER_ROUTING.md
-- VERIFICATION_MODEL.md
-- INTEGRATION_POLICY.md
-- BUILD_ORDER.md
-- DECISIONS_LOG.md
+## Updated source tiers
 
-## Runtime docs
-- runtime/CURRENT_REPO_MAP.md
-- runtime/CURRENT_WORKFLOWS.md
-- runtime/CURRENT_PROVIDERS.md
-- runtime/CURRENT_TOOLS.md
-- runtime/CURRENT_MEMORY_STATE.md
-- runtime/CURRENT_GAPS.md
-- runtime/CURRENT_BLOCKERS.md
+1. KB control surface
+2. Canonical internal architecture docs
+3. Runtime truth docs
+4. Build-slice docs
+5. Reference lessons docs
+6. External public registries and remote doc surfaces
 
-## Build docs
-- build/V1_SAFE_PLANNER.md
-- build/V1_PATCH_PROPOSAL.md
-- build/V1_APPROVED_EXECUTION.md
-- build/V1_POLICY_ENGINE.md
-- build/V1_MEMORY_BOOTSTRAP.md
+## KB control surface
 
-## Reference docs
-- reference/GOBII_LESSONS.md
-- reference/OPENCLAW_LESSONS.md
-- reference/MCP_PATTERNS.md
-- reference/REPO_OPTIONS.md
-- reference/THIRD_PARTY_ATTRIBUTION.md
+- `kb/principles.md`
+- `kb/repo-rules.md`
+- `kb/architecture.md`
+- `kb/schemas.md`
+- `kb/workflows.md`
+- `kb/adr.md`
+- `kb/checklists.md`
+- `kb/precedents.md`
+- `kb/validation.md`
+- `kb/safety.md`
+- `kb/glossary.md`
+- `kb/faq.md`
 
-## External source registries
-- sources/AI-KNOWLEDGE-SOURCES.txt
-- sources/MCP-Knowledge.txt
-- sources/universal_ai_source_pack.yaml
+## New rules
 
-## Rules
-- One topic, one canonical file.
-- Architecture docs override reference notes.
-- Runtime docs override assumptions.
-- Build docs define the next coding target.
-- Raw repo dumps are not canonical truth.
-- Temporary workflow transcripts must be converted into docs or archived.
-- Public docs should be ingested in this order:
-  1. llms-full.txt
-  2. llms.txt
-  3. markdown
-  4. openapi/json/yaml/schema
-  5. structured_html
+- KB pages are the assistant’s first navigation surface.
+- Canonical docs remain the detailed truth layer behind the KB.
+- Runtime docs override canonical docs only for current-state questions.
+- External docs do not override internal doctrine without explicit variance handling.
+- One topic, one controlling canonical file, with one or more KB entry points if needed.
+
+## Retrieval protocol
+
+### For planning
+1. `kb/principles`
+2. `kb/repo-rules`
+3. `kb/workflows`
+4. `build/*`
+
+### For code/interface changes
+1. `kb/architecture`
+2. `kb/schemas`
+3. `kb/validation`
+4. runtime truth docs
+
+### For risk-sensitive work
+1. `kb/safety`
+2. `kb/validation`
+3. `RISK_TAXONOMY.md`
+4. `EXECUTION_RECEIPTS.md`
+
+### For source confusion
+1. `CORE_SOURCES_INDEX.md`
+2. `PROJECT_MEMORY_INDEX.md`
+3. `runtime/CURRENT_GAPS.md`
+
+## External doc surface rule
+
+Remote docs should be mounted wherever possible through machine-friendly endpoints:
+- `llms-full.txt`
+- `llms.txt`
+- MCP docs servers
+- structured markdown or JSON APIs
 
 ## Maintenance
-Update canonical docs when architecture changes.
+
+Update KB pages when canonical meaning changes.
 Update runtime docs when actual system state changes.
-Update build docs when the active implementation target changes.
-Archive outdated transcripts and prompt experiments.
+Update build docs when the active target changes.
+Update remote doc surfaces when official endpoints or MCP surfaces change.
