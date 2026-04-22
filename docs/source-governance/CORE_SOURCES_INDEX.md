@@ -15,7 +15,7 @@ Use it to decide:
 1. Runtime truth — `runtime/truth/*`
 2. Canonical repo docs — canonical architecture, schema, risk, memory, receipt docs
 3. Maintained KB — `kb/*`
-4. Project memory — `memory/*`
+4. Project memory — `docs/source-governance/PROJECT_MEMORY_INDEX.md` plus `memory/*` when present
 5. Remote official docs — `docs/source-governance/REMOTE_DOC_SURFACES.md`
 6. Derived summaries
 7. Raw dumps and transcripts
@@ -84,7 +84,7 @@ Read in order:
 - `docs/source-governance/SOURCE_AUTHORITY_MATRIX.md`
 - `docs/source-governance/SOURCE_CONFLICT_POLICY.md`
 - `docs/source-governance/SOURCE_FRESHNESS_LEDGER.md`
-- `docs/source-governance/TRUTH_FILE_STANDARDS.md`
+- `docs/source-governance/RUNTIME_FILE_STANDARDS.md`
 - `docs/source-governance/KB_MAINTENANCE_PROTOCOL.md`
 
 ## Usage notes
