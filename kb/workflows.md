@@ -1,114 +1,76 @@
 # /kb/workflows
 
 ## Purpose
+Describe the standard operating workflows for planning, debugging, refactoring, release, and incident response.
 
-This page defines the standard workflows for planning, debugging, refactoring, release, and incident response in `refactored-system`.
+## Authority
+Maintained KB.
 
-## Scope
+This page is a governed operational summary. Canonical docs remain stronger for exact doctrine, and runtime truth remains stronger for what is active now.
 
-This page governs operational sequences. It does not replace architecture, schema, safety, or validation pages; it applies them.
+## When to use this page
+Use this page when you need the default sequence for:
+- planning a bounded change
+- debugging a failure path
+- performing a refactor
+- preparing a release
+- handling an incident or recovery step
 
-## Facts from current project doctrine
+## Content
+### Core workflow posture
+- read before write
+- classify before authorize
+- authorize before execute
+- verify before claim
+- persist selectively, not indiscriminately
 
-### Canonical execution lifecycle
-INTAKE → CONTEXT_LOAD → PLAN → AUTHORIZE → EXECUTE → OBSERVE → VERIFY → RETRY_OR_REPLAN → PERSIST → RESPOND → FAIL_CLOSED
+### Standard workflows
+#### Planning
+- read the smallest relevant canonical pages
+- check runtime truth when current state matters
+- state assumptions, unknowns, and success criteria
+- identify the smallest viable slice
 
-### Source workflow rules
-- Prefer canonical docs first.
-- Runtime docs override assumptions.
-- Build docs define the next coding target.
-- Temporary transcripts should be converted to docs or archived.
+#### Debugging
+- reconstruct the path from receipts, logs, runtime docs, and artifacts
+- classify the failure type
+- verify reproducibility
+- prefer minimal targeted fixes
+- record reusable lessons or precedents
 
-### Memory workflow rules
-- Working memory is short-lived.
-- Episodic memory stores outcomes and approvals.
-- Semantic memory stores validated reusable knowledge.
-- Procedural memory requires repeated successful reuse before promotion.
+#### Refactoring
+- confirm the target boundary
+- check architecture and schemas before editing
+- keep behavior, contract, and receipt impact explicit
+- avoid donor-code merges without adaptation
 
-## Standard workflows
+#### Release
+- confirm what changed and what did not
+- verify compatibility and safety impact
+- run validation and smoke checks
+- ensure runtime truth is current enough to describe reality
 
-### 1. Planning workflow
-1. Read the smallest relevant canonical pages.
-2. Check runtime truth docs if the task concerns current state.
-3. Normalize the task objective and constraints.
-4. Produce assumptions, unknowns, and success criteria.
-5. Classify likely risk checkpoints.
-6. Identify the smallest viable slice.
-7. Link the plan to the canonical docs it depends on.
+#### Incident response
+- fail closed where policy requires
+- preserve evidence first
+- classify the incident
+- contain the blast radius
+- execute the smallest verified recovery path
 
-### 2. Debugging workflow
-1. Reconstruct the failing path from receipts, logs, runtime docs, and artifacts.
-2. Distinguish:
-   - schema failure
-   - policy denial
-   - tool failure
-   - verification failure
-   - timeout
-   - unknown
-3. Verify whether the failure is reproducible.
-4. Prefer minimal, targeted fixes over broad rewrites.
-5. Record the failure as a precedent or lesson if reusable.
-6. Update runtime truth if the current system state changed.
+## Related pages
+- `kb/principles.md`
+- `kb/architecture.md`
+- `kb/checklists.md`
+- `kb/validation.md`
+- `kb/safety.md`
+- `kb/precedents.md`
 
-### 3. Refactoring workflow
-1. Confirm the target boundary and why it matters.
-2. Check architecture and schemas before editing.
-3. Identify the smallest safe refactor slice.
-4. Keep behavior, contract, and receipt impact explicit.
-5. Preserve or improve verification and replayability.
-6. Avoid donor-code merges without adaptation.
-7. Update docs first or in lockstep when structure changes.
+## Freshness
+- Last updated: 2026-04-22
+- Owner: repo-maintainer
+- Review interval: 30 days
 
-### 4. Release workflow
-1. Confirm what changed and what did not.
-2. Verify schema or contract compatibility.
-3. Verify safety and approval paths for new risky behavior.
-4. Run validation and smoke checks.
-5. Ensure runtime truth docs are current enough to describe reality.
-6. Generate execution receipts or release notes that support replay.
-
-### 5. Incident response workflow
-1. Fail closed where policy requires.
-2. Preserve evidence first.
-3. Classify the incident by failure or risk type.
-4. Contain the blast radius.
-5. Execute the smallest verified recovery path.
-6. Record the incident outcome in episodic or precedent form.
-7. Promote to procedural guidance only after repeated validated success.
-
-## Workflow invariants
-- Read before write.
-- Classify before authorize.
-- Authorize before execute.
-- Verify before claim.
-- Persist selectively, not indiscriminately.
-
-## Boundaries
-
-### This page does decide
-- standard operational sequence
-- how other KB pages are applied during work
-
-### This page does not decide
-- exact CI runner steps
-- exact test commands
-- exact deployment tooling
-- exact branch or ticket workflow
-
-## Cross-references
-- `/kb/principles`
-- `/kb/architecture`
-- `/kb/checklists`
-- `/kb/validation`
-- `/kb/safety`
-- `/kb/precedents`
-
-## Assumptions
-- The project wants reusable, repeatable workflows more than one-off heroics.
-- Runtime docs will be kept current enough to inform planning and debugging.
-- Receipts and artifacts will become primary debugging evidence once implemented.
-
-## Open questions
-- Which workflow steps should become automated gates?
-- Should incident response get its own deeper playbook once runtime surfaces are live?
-- Which refactor classes require ADRs vs checklist-only treatment?
+## Conflict notes
+This page does not override:
+- canonical workflow, safety, or validation doctrine
+- runtime truth about which checks, tools, or recovery paths are currently available
